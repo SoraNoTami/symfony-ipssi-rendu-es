@@ -20,6 +20,15 @@ class Article
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $Content = null;
 
+    #[ORM\ManyToOne(inversedBy: 'articles')]
+    private ?User $author_id = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $CreatedAt = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $UpdatedAt = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,6 +54,42 @@ class Article
     public function setContent(?string $Content): self
     {
         $this->Content = $Content;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(?\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getAuthorId(): ?User
+    {
+        return $this->author_id;
+    }
+
+    public function setAuthorId(?User $author_id): self
+    {
+        $this->author_id = $author_id;
 
         return $this;
     }
