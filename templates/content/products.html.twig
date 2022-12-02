@@ -9,12 +9,9 @@ Produits
 	    <h1>Liste des produits</h1>
 	    <section>
 		    <h2>{{ product.name }}</h2>
-		    <p>{{ product.description }}</p>
 		    <p>Prix:{{ product.price }}€</p>
-		<p>Catégorie:{{ product.category.name }}</p>
-		<p>Vendeur :
-			{{ product.vendor.firstname }}
-			{{ product.vendor.lastname }}</p>
+		    <p>Catégorie:{{ product.category.name }}</p>
+            <a class="action_button" href="{{ path('app_product_show', {'id': product.id}) }}">show</a>
 	</section>
     {% endfor %}
 {% endblock %}

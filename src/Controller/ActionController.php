@@ -47,20 +47,28 @@ class ActionController extends AbstractController
     #[Route('/article/edit/{id}', name: 'app_article_edit', methods: ['GET', 'POST'])]
     public function editArticle(Request $request, Article $article, ArticleRepository $articleRepository): Response
     {
-        $form = $this->createForm(ArticleType::class, $article);
-        $form->handleRequest($request);
+        // $author = $article->getAuthor()->getId();
+        // $user = $this->getUser()->getId();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $article->setUpdatedAt(new DateTimeImmutable('now'));
-            $articleRepository->save($article, true);
+            // if ($user == $author) {
+                $form = $this->createForm(ArticleType::class, $article);
+                $form->handleRequest($request);
 
-            return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
-        }
+                if ($form->isSubmitted() && $form->isValid()) {
+                    $article->setUpdatedAt(new DateTimeImmutable('now'));
+                    $articleRepository->save($article, true);
 
-        return $this->renderForm('content/article/edit.html.twig', [
-            'article' => $article,
-            'form' => $form,
-        ]);
+                    return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
+                }
+
+                return $this->renderForm('content/article/edit.html.twig', [
+                    'article' => $article,
+                    'form' => $form,
+                ]);
+            // }else {
+            //     return $this->redirectToRoute('app_home');
+            // } 
+        
     }
 
     // Delete an Article
@@ -110,7 +118,7 @@ class ActionController extends AbstractController
             return $this->redirectToRoute('app_products', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('content/product/edit.html.twig', [
+        return $this->renderForm('content/product-edit.html.twig', [
             'product' => $product,
             'form' => $form,
         ]);
