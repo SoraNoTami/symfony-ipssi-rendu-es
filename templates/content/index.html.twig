@@ -1,11 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ContentController!{% endblock %}
+{% block title %}Homepage
+{% endblock %}
 
 {% block body %}
-
-<div>
-    <h1>Hello✅</h1>
-</div>
-
+	{% for article in articles %}
+		<section>
+			<h2>{{ article.title }}</h2>
+			<p>{{ article.content }}</p>
+			{% if article.author %}
+				<p class="article_author">
+					Auteur:
+					{{ article.author.firstname }}
+					{{ article.author.lastname }}
+				</p>
+			{% endif %}
+			<div class="action_button_container">
+			</div>
+		</section>
+	{% endfor %}
 {% endblock %}
