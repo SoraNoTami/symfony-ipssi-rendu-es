@@ -16,6 +16,9 @@ class Product
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $name = null;
 
+    #[ORM\ManyToOne(inversedBy: 'products')]
+    private ?User $vendor = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -29,6 +32,18 @@ class Product
     public function setName(?string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getVendor(): ?User
+    {
+        return $this->vendor;
+    }
+
+    public function setVendor(?User $vendor): self
+    {
+        $this->vendor = $vendor;
 
         return $this;
     }

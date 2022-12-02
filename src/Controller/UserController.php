@@ -2,12 +2,21 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use App\Form\UserType;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserController extends AbstractController
 {
+    public function __construct(protected UserPasswordHasherInterface $userPasswordHasher)
+    {      
+    }
+    
     #[Route('/profile/{id}', name: 'app_user_show')]
     public function getProfile(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {

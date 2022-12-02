@@ -17,7 +17,7 @@
                 <p>{{ article.content }}</p>
                 {% if article.author %}
                 <p class="article_author">
-                Auteur: {{ article.author.name }} {{ article.author.firstname }}
+                Auteur: {{ article.author.firstname }} {{ article.author.lastname }}
                 </p>
                 {% endif %}
             <div class="action_button_container">
@@ -32,8 +32,8 @@
             <h2>{{ product.title }}</h2>
             <p>{{ product.description }}</p>
             <p>Prix: {{ product.price }} €</p>
-            <p>Catégorie: {{ product.category.name }}</p>
-            <p>Vendeur : {{ product.seller.name }} {{ product.seller.firstname }}</p>
+            <p>Catégorie: {{ product.category.firstname }}</p>
+            <p>Vendeur : {{ product.seller.firstname }} {{ product.seller.lastname }}</p>
         </section>
             <a class="action_button" href="{{ path('app_product_show', {'id': product.id}) }}">show</a>
             <a class="action_button" href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
